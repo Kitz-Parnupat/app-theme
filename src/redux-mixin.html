@@ -1,11 +1,22 @@
 <link rel="import" href="../bower_components/polymer-redux/polymer-redux.html">
+<link rel="import" href="../src/redux/reducers/common-reducer.html">
 <script src="../node_modules/redux/dist/redux.js"></script>
 <script>
     // Setup a Redux store
-    const initial = {message: 'Hello, World!'};
+    const initial = {
+        message: 'Hello, World!'
+    };
     const reducer = state => state;
-    const store = Redux.createStore(reducer, initial);
-
+    const rootReducer = Redux.combineReducers({
+        common : commonReducer
+    })
+    const store = Redux.createStore(rootReducer,
+        Redux.compose(
+            window.devToolsExtension
+                ? window.devToolsExtension()
+                : v => v
+            )
+    );
     // Export the ReduxMixin
     ReduxMixin = PolymerRedux(store);
 </script>

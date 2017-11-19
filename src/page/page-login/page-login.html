@@ -1,4 +1,5 @@
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../ajax/commonAction.html">
 <link rel="import" href="../../redux-mixin.html">
 <dom-module id="page-login">
     <template>
@@ -19,9 +20,21 @@
                 return {
                     message: {
                         type: String,
-                        statePath: 'message' // Binds state, "Hello, World!"
+                        statePath: 'common.message' // Binds state, "Hello, World!"
                     }
                 };
+            }
+            ready(){
+                super.ready();
+                common.getData('5999773e8ca0773d341666fesss')
+                .then((res)=>{
+                    console.log(res.data)
+                    this.dispatch({type:'COMMON_SET_MESSAGE',payload:'Hi Redux'})
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+               
             }
         }
 
