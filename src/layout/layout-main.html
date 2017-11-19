@@ -1,0 +1,77 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="./layout-drawer.html">
+<link rel="import" href="../shared-styles.html">
+<dom-module id="layout-main">
+    <template>
+        <style include="shared-styles">
+            app-toolbar {
+                background-color: var(--toolbar-color-primary);
+                color: #fff;
+            }
+
+            paper-icon-button {
+                --paper-icon-button-ink-color: white;
+            }
+
+            paper-icon-button+[main-title] {
+                margin-left: 24px;
+            }
+
+            /* paper-progress {
+                display: block;
+                width: 100%;
+                --paper-progress-active-color: rgba(255, 255, 255, 0.5);
+                --paper-progress-container-color: transparent;
+            } */
+
+            app-header {
+                @apply --layout-fixed-top;
+                color: #fff;
+                --app-header-background-rear-layer: {
+                    background-color: #ef6c00;
+                }
+                ;
+            }
+        </style>
+
+        <app-header reveals>
+            <app-toolbar>
+                <paper-icon-button icon="menu" on-click="toggleDrawer"></paper-icon-button>
+                <div main-title>Project X</div>
+                <paper-icon-button icon="delete"></paper-icon-button>
+                <paper-icon-button icon="search"></paper-icon-button>
+                <paper-icon-button icon="close"></paper-icon-button>
+            </app-toolbar>
+        </app-header>
+        <layout-drawer id="drawer"></layout-drawer>
+        <div style="padding-top:64px"></div>
+        <slot></slot>
+    </template>
+
+    <script>
+        class layoutMain extends Polymer.Element {
+
+            static get is() {
+                return 'layout-main';
+            }
+
+            static get properties() {
+                return {
+
+                };
+            }
+
+            toggleDrawer(){
+                this.$.drawer.toggle()
+            }
+        }
+
+        window.customElements.define(layoutMain.is, layoutMain);
+    </script>
+</dom-module>
