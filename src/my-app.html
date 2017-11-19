@@ -49,7 +49,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl('my-' + page + '.html');
+        var resolvedPageUrl = this.resolveUrl('page/page-'+this.page+'/page-'+this.page+'.html');
         Polymer.importHref(
             resolvedPageUrl,
             this._onLoad.bind(this),
@@ -60,7 +60,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.layout.$.drawer.close()
       }
       _showPage404() {
-        this.page = 'view404';
+        console.error('view404')
+        // this.page = 'view404';
       }
     }
 

@@ -1,0 +1,30 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../redux-mixin.html">
+<dom-module id="page-login">
+    <template>
+        <style>
+            :host {
+                display: block
+            }
+        </style>
+        pageLogin : [[message]]   
+    </template>
+
+    <script>
+        class pageLogin extends ReduxMixin(Polymer.Element) {
+            static get is() {
+                return 'page-login';
+            }
+            static get properties() {
+                return {
+                    message: {
+                        type: String,
+                        statePath: 'message' // Binds state, "Hello, World!"
+                    }
+                };
+            }
+        }
+
+        window.customElements.define(pageLogin.is, pageLogin);
+    </script>
+</dom-module>
