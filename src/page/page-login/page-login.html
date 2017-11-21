@@ -1,14 +1,30 @@
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../ajax/commonAction.html">
+<link rel="import" href="../../ajax/authAction.html">
 <link rel="import" href="../../redux-mixin.html">
+<link rel="import" href="../../shared-styles.html">
 <dom-module id="page-login">
     <template>
-        <style>
+        <style include="shared-styles">
             :host {
                 display: block
             }
         </style>
-        pageLogin : [[message]]   
+        <!-- pageLogin : [[message]]
+        <div>status : [[status]]</div> 
+        <button on-click="getData">ClickMe</button>   -->
+        <div class="container">
+            <h2>Login  [[message]]</h2>
+        
+            <label for="email">Email</label>
+            <input type="text" id="email" value="test@hotmail.com">
+            <label for="password">Password</label>
+            <input type="password" id="password" value="Password">
+            <button on-click="login">login</button>
+            <div>
+                status : [[status]]
+            </div>
+        </div>
     </template>
 
     <script>
@@ -21,20 +37,38 @@
                     message: {
                         type: String,
                         statePath: 'common.message' // Binds state, "Hello, World!"
+                    },
+                    status:{
+                        type:String,
+                        value:'No update !!'
                     }
                 };
             }
             ready(){
                 super.ready();
-                common.getData('5999773e8ca0773d341666fe')
-                .then((res)=>{
-                    console.log(res.data)
-                    this.dispatch({type:'COMMON_SET_MESSAGE',payload:'Hi Redux'})
-                })
-                .catch((err)=>{
-                    console.log(err)
-                })
-               
+                common.setData('5999773e8ca0773d341666fe');
+            }
+            getData(){
+                this.setMessage('loading');
+                common.getData()
+                .then((res)=>this.dispatch({type:'COMMON_SET_MESSAGE',payload:'Hi Redux'}))
+                .then((res)=>this.setMessage('update complete'))
+                .catch((err)=>this.setMessage('update failed')) 
+            }
+            setMessage(val){
+                setTimeout(()=>{
+                    this.status = val;
+                },1000)
+            }
+            login(){
+                const obj = {
+                    email : this.$.email.value,
+                    password : this.$.password.value
+                }
+                auth.login(obj)
+                .then((res)=>this.dispatch({type:'COMMON_SET_MESSAGE',payload:'Hi Redux'}))
+                .then((res)=>this.setMessage('login complete'))
+                .catch((err)=>this.setMessage(err.message)) 
             }
         }
 

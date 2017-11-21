@@ -1,7 +1,11 @@
+
 <script>
     class commonAction{
-        getData(id){
-            return axios.get('./food/group/list/?restaurant_branch_id='+id)
+        setData(val){
+           this.id = val;
+        }
+        getData(){
+            return axios.get('./food/group/list/?restaurant_branch_id='+this.id)
         }
     }
     const common = new commonAction()

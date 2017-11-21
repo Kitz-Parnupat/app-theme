@@ -1,0 +1,8 @@
+<script>
+    class authAction{
+        login(val){
+            return axios.post('./auth/sign_in',val)
+        }
+    }
+    const auth = new authAction()
+</script>
