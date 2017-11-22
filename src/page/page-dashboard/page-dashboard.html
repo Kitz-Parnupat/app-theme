@@ -1,0 +1,32 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../shared-styles.html">
+<dom-module id="page-dashboard">
+    <template>
+        <style include="shared-styles">
+          
+        </style>
+        <div class="container">
+            pageDashboard
+        </div>
+        
+
+    </template>
+
+    <script>
+       
+        class pageDashboard extends Polymer.Element {
+          
+            static get is() {
+                return 'page-dashboard';
+            }
+
+            static get properties() {
+                return {
+                    
+                };
+            }
+        }
+
+        window.customElements.define(pageDashboard.is, pageDashboard);
+    </script>
+</dom-module>

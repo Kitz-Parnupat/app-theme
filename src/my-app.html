@@ -5,11 +5,12 @@
 <link rel="import" href="./my-route.html">
 <link rel="import" href="./my-init.html">
 <link rel="import" href="./layout/layout-main.html">
-
+<link rel="import" href="./my-auth.html">
 <link rel="import" href="../src/config/config-axios.html">
 <dom-module id="my-app">
   <template>
     <my-route path="{{page}}"></my-route>
+    <my-auth></my-auth>
     <layout-main id="layout">
         <my-init page="[[page]]"></my-init>
     </layout-main>
@@ -38,7 +39,8 @@
       }
       _pageChanged(page) {
         // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl('page/page-'+this.page+'/page-'+this.page+'.html');
+        if(page == '') page = 'dashboard'
+        var resolvedPageUrl = this.resolveUrl('page/page-'+page+'/page-'+page+'.html');
         Polymer.importHref(
             resolvedPageUrl,
             this._onLoad.bind(this),
@@ -49,8 +51,8 @@
         this.$.layout.$.drawer.close()
       }
       _showPage404() {
-        console.error('view404')
-        // this.page = 'view404';
+        // console.error('view404')
+        this.page = 'view404';
       }
     }
 

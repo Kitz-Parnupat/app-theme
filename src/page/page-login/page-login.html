@@ -1,6 +1,6 @@
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../ajax/commonAction.html">
-<link rel="import" href="../../ajax/authAction.html">
+<link rel="import" href="../../actions/commonAction.html">
+<link rel="import" href="../../actions/authAction.html">
 <link rel="import" href="../../redux-mixin.html">
 <link rel="import" href="../../shared-styles.html">
 <dom-module id="page-login">
@@ -21,6 +21,8 @@
             <label for="password">Password</label>
             <input type="password" id="password" value="Password">
             <button on-click="login">login</button>
+            <button on-click="checkUser">CheckUser</button>
+            <button on-click="clearUser">logout</button>
             <div>
                 status : [[status]]
             </div>
@@ -66,9 +68,17 @@
                     password : this.$.password.value
                 }
                 auth.login(obj)
-                .then((res)=>this.dispatch({type:'COMMON_SET_MESSAGE',payload:'Hi Redux'}))
+                .then((res)=>auth.setLocalstorage(res.data))
+                .then((res)=>this.checkUser())
                 .then((res)=>this.setMessage('login complete'))
                 .catch((err)=>this.setMessage(err.message)) 
+            }
+            checkUser(){
+                var user = auth.getUser();
+                this.dispatch({type:'AUTH_SET_USER',payload:user})
+            }
+            clearUser(){
+                auth.logout()
             }
         }
 

@@ -5,13 +5,15 @@
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../redux-mixin.html">
 <link rel="import" href="../shared-styles.html">
 <dom-module id="layout-drawer">
     <template>
         <style include="shared-styles">
             app-toolbar {
                 background-color: var(--toolbar-color-primary);
-                color: #ffffff;
+                color: white;
                 opacity: 87%;
             }
 
@@ -28,9 +30,7 @@
 
             .drawer-list a.iron-selected {
                 color: rgb(0, 176, 255);
-                border-left: 4px solid #40C4FF
-                /* background-color: rgba(0, 176, 255, 0.1); */
-                /* font-weight: bold; */
+                border-left: 4px solid var(--toolbar-color-primary);
             }
 
             .drawer-list>a:hover {
@@ -38,18 +38,27 @@
             }
 
             .drawer-bar {
-                background-color: #4285f4;
+                background-color: var(--toolbar-color-primary);
                 color: white;
+            }
+            .header-drawer{
+                font-size: 1rem;
+            }
+            .header-icon{
+                margin-right:0.5rem;
             }
         </style>
         <app-drawer id="drawer" swipe-open>
-            <app-toolbar>Menu</app-toolbar>
+            <app-toolbar>
+                <iron-icon class="header-icon" icon="home" noink></iron-icon>
+                <div class="header-drawer">[[user.fullName]]</div>
+            </app-toolbar>
             <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-                <a name="view1" href="[[rootPath]]view1">
+                <a name="dashboard" href="[[rootPath]]">
                     <iron-icon icon="icons:dashboard"></iron-icon>
                     &nbsp;&nbsp;Dashboard
                 </a>
-                <a name="view2" href="[[rootPath]]view2">
+                <a name="profile" href="[[rootPath]]profile">
                     <iron-icon icon="social:person"></iron-icon>
                     &nbsp;&nbsp;Profile
                 </a>
@@ -64,7 +73,7 @@
     </template>
 
     <script>
-        class layoutDrawer extends Polymer.Element {
+        class layoutDrawer extends ReduxMixin(Polymer.Element) {
 
             static get is() {
                 return 'layout-drawer';
@@ -75,6 +84,10 @@
                     page: {
                         type: String,
                         value: ''
+                    },
+                    user:{
+                        type:Object,
+                        statePath:'auth.user'
                     },
                     rootPath: String
                 };
