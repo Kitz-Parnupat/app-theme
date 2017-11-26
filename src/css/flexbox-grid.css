@@ -3,6 +3,8 @@
 .container-fluid,.container {
     margin-right: auto;
     margin-left: auto;
+
+    padding: 0.5rem; 
 }
 .container-fluid{
     padding-right: 2rem;
