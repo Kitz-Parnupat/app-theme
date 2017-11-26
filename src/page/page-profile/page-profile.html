@@ -1,28 +1,25 @@
 <link rel="import" href="../../../bower_components/polymer/polymer-element.html">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="import" href="../../../bower_components/vaadin-text-field/vaadin-text-field.html">
+<link rel="import" href="../../../bower_components/vaadin-valo-theme/vaadin-text-field.html">
 <link rel="import" href="../../shared-styles.html">
 <dom-module id="page-profile">
     <template>
         <style include="shared-styles">
-          
+            
         </style>
         <div class="container">
             pageProfile
-            <button on-click="openDailog">clikcMe</button>
+            <vaadin-text-field label="Foo" value="bar"></vaadin-text-field>
         </div>
-        
+
 
     </template>
 
     <script>
-       
         class pageProfile extends Polymer.Element {
-          
+
             static get is() {
                 return 'page-profile';
-            }
-            openDailog(){
-                swal("Good job!", "You clicked the button!", "success");
             }
         }
 
