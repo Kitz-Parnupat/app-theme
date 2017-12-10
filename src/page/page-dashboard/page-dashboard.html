@@ -3,6 +3,7 @@
 <link rel="import" href="../../components/my-header/my-header.html">
 <link rel="import" href="../../shared-styles.html">
 <link rel="import" href="../../components/my-card/my-card.html">
+<link rel="import" href="../../layout/layout-sub.html">
 <dom-module id="page-dashboard">
     <template>
         <style include="shared-styles">
@@ -22,7 +23,7 @@
                     <template is="dom-repeat" items="[0,1,2,3,4]">
                         <div class="col-xs-12 col-sm-6 col-lg-4">
                             <div>
-                                <my-card></my-card>
+                                <my-card label="[[index]]" description="[[index]]"></my-card>
                             </div>
                         </div>
                     </template>

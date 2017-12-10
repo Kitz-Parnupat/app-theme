@@ -22,7 +22,13 @@
     "paper-dialog": "PolymerElements/paper-dialog#^2.0.0",
     "paper-dialog-scrollable": "PolymerElements/paper-dialog-scrollable#^2.1.0",
     "vaadin-text-field": "vaadin/vaadin-text-field#^1.1.0",
-    "vaadin-valo-theme": "vaadin/vaadin-valo-theme#^0.3.2"
+    "vaadin-valo-theme": "vaadin/vaadin-valo-theme#^0.3.2",
+    "paper-tabs": "PolymerElements/paper-tabs#^2.0.0",
+    "vaadin-checkbox": "vaadin/vaadin-checkbox#^1.0.3",
+    "vaadin-combo-box": "vaadin/vaadin-combo-box#^3.0.2",
+    "vaadin-date-picker": "vaadin/vaadin-date-picker#^2.0.7",
+    "vaadin-radio-button": "vaadin/vaadin-radio-button#^1.0.0-alpha8",
+    "vaadin-grid": "vaadin/vaadin-grid#^4.0.0"
   },
   "resolutions": {
     "polymer": "^2.0.0"
