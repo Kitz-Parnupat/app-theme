@@ -2,22 +2,14 @@
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 
 <link rel="lazy-import" href="./page/page-login/page-login.html">
-<link rel="lazy-import" href="./page/page-dashboard/page-dashboard.html">
-<link rel="lazy-import" href="./page/page-profile/page-profile.html">
 <link rel="lazy-import" href="./page/page-view404/page-view404.html">
 
 <dom-module id="my-init">
     <template>
-        <style>
-
-        </style>
         <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
             <page-login name="login"></page-login>
-            <page-dashboard name=""></page-dashboard>
-            <page-profile name="profile"></page-profile>
             <page-view404 name="view404"></page-view404>      
         </iron-pages>
-        </app-header-layout>
     </template>
 
     <script>

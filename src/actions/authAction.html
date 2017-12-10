@@ -13,7 +13,7 @@
         getUser(){
             var user = JSON.parse(localStorage.getItem('user'));
             if(user) return _.omit(user,['token','success']);
-            else return false;
+            else return {};
         }
     }
     const auth = new authAction()
