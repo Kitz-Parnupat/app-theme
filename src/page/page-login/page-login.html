@@ -3,6 +3,7 @@
 <link rel="import" href="../../actions/authAction.html">
 <link rel="import" href="../../redux-mixin.html">
 <link rel="import" href="../../shared-styles.html">
+<link rel="import" href="../../components/my-input/my-input.html">
 <dom-module id="page-login">
     <template>
         <style include="shared-styles">
@@ -11,7 +12,8 @@
             }
         </style>
         <div class="container">
-            <h2>Login  [[message]]</h2>
+            <my-input label="ทดสอบ" bind-value="{{value}}"></my-input>    
+            <!-- <h2>Login  [[message]]</h2>
             <label for="email">Email</label>
             <input type="text" id="email" value="test@hotmail.com">
             <label for="password">Password</label>
@@ -21,7 +23,7 @@
             <button on-click="clearUser">logout</button>
             <div>
                 status : [[status]]
-            </div>
+            </div> -->
         </div>
     </template>
 
@@ -39,6 +41,10 @@
                     status:{
                         type:String,
                         value:'No update !!'
+                    },
+                    value:{
+                        type:String,
+                        value:'112234'
                     }
                 };
             }
